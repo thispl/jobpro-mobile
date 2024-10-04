@@ -218,8 +218,9 @@ class _JobDetailsTabContainerScreenState extends State<JobDetailsTabContainerScr
                                           padding: getPadding(top: 9),
                                           child: Text(
                                             position,
-                                            softWrap: true,
+                                            
                                             style: CustomTextStyles.titleSmallPrimarySemiBold,
+                                            softWrap: true,
                                           ),
                                         ),
                                       ],
@@ -287,7 +288,7 @@ class _JobDetailsTabContainerScreenState extends State<JobDetailsTabContainerScr
   whatsapp(String position,String custom_recruiter_contact) async {
     String contact = (custom_recruiter_contact.length == 10) 
         ? custom_recruiter_contact 
-        : "9361170542"; 
+        : "7305428777"; 
 
     String text = 'Hi, I am willing to apply for the Position: $position'; // Corrected the string interpolation
     String androidUrl = "whatsapp://send?phone=$contact&text=${Uri.encodeComponent(text)}"; // Encode the message
