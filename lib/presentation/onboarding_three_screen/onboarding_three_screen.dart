@@ -5,5 +5,5 @@ import '../onboarding_three_screen/widgets/sliderapplicati_item_widget.dart';imp
 
 /// When the action is triggered, this function uses the [Get] package to
 /// push the named route for the signUpCreateAcountScreen.
-onTapLabel() { Get.toNamed(AppRoutes.jobDetails, ); } 
+onTapLabel() { Get.toNamed(AppRoutes.loginScreen, ); } 
  }

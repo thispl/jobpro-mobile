@@ -21,6 +21,8 @@ import 'package:jobpro/presentation/speciallization_screen/binding/speciallizati
 import 'package:jobpro/presentation/select_a_country_screen/select_a_country_screen.dart';
 import 'package:jobpro/presentation/select_a_country_screen/binding/select_a_country_binding.dart';
 import 'package:jobpro/presentation/login_screen/login_screen.dart';
+
+
 import 'package:jobpro/presentation/login_screen/binding/login_binding.dart';
 import 'package:jobpro/presentation/enter_otp_screen/enter_otp_screen.dart';
 import 'package:jobpro/presentation/enter_otp_screen/binding/enter_otp_binding.dart';

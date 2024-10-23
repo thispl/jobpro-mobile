@@ -34,7 +34,9 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    namespace "com.jobpro.app"
     compileSdkVersion flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -56,6 +58,10 @@ android {
 
     signingConfigs {
         release {
+            // keyAlias 'my-key-alias'
+            // keyPassword '1234@Teampro'
+            // storeFile file('/home/teampro/Downloads/jobpro/android/app/my-release-key.keystore')
+            // storePassword 'your-keystore-password'
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
@@ -70,7 +76,6 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    
 }
 
 flutter {

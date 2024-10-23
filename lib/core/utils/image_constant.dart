@@ -61,6 +61,7 @@ class ImageConstant {
 
   // Saved images
   static String imgBookmarkPrimary = '$imagePath/img_bookmark_primary.svg';
+  static String imgBookmarkBold = '$imagePath/imgBookmarkBold.svg';
 
   // Apply Job images
   static String imgCloudupload1 = '$imagePath/img_cloudupload1.svg';
@@ -131,6 +132,8 @@ class ImageConstant {
 
   static String imgSearch = '$imagePath/img_search.svg';
 
+  static String imgteampro = '$imagePath/TEAMPRO_STROKE_2.png';
+
   static String imgImage50x50 = '$imagePath/user-member-avatar-face-profile-icon-vector-22965342.jpg';
 
   static String imgNotification = '$imagePath/img_notification.svg';
@@ -181,6 +184,8 @@ class ImageConstant {
       '$imagePath/img_logo_deep_orange_700.svg';
 
   static String imgUser = '$imagePath/img_user.svg';
+
+  static String imgCall = '$imagePath/Call-icon-on-transparent-background-PNG.svg';
 
   static String imgFrame162724 = '$imagePath/img_frame162724.svg';
 

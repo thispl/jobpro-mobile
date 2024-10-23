@@ -75,7 +75,7 @@ class SavedItemWidget extends StatelessWidget {
                     top: 10,
                   ),
                   child: Text(
-                    "msg_560_12_000_month".tr,
+                    '${savedItemModelObj.dummystudio2Txt.value} - ${savedItemModelObj.dummystudio3Txt.value}', 
                     style: CustomTextStyles.labelLargeGray600_1,
                   ),
                 ),
@@ -94,7 +94,7 @@ class SavedItemWidget extends StatelessWidget {
                       CustomElevatedButton(
                         height: getVerticalSize(28),
                         width: getHorizontalSize(103),
-                        text: "lbl_two_days_ago".tr,
+                        text: savedItemModelObj.dummystudio4Txt.value,
                         margin: getMargin(
                           left: 8,
                         ),
@@ -106,15 +106,15 @@ class SavedItemWidget extends StatelessWidget {
               ],
             ),
           ),
-          CustomImageView(
-            svgPath: ImageConstant.imgBookmarkPrimary,
-            height: getSize(24),
-            width: getSize(24),
-            margin: getMargin(
-              left: 30,
-              bottom: 92,
-            ),
-          ),
+          // CustomImageView(
+          //   svgPath: ImageConstant.imgBookmarkPrimary,
+          //   height: getSize(24),
+          //   width: getSize(24),
+          //   margin: getMargin(
+          //     left: 30,
+          //     bottom: 92,
+          //   ),
+          // ),
         ],
       ),
     );

@@ -5,7 +5,8 @@ class CustomBottomBar extends StatelessWidget {
   CustomBottomBar({
     Key? key,
     this.onChanged,
-  }) : super(
+  })
+   : super(
           key: key,
         );
 
@@ -18,12 +19,12 @@ class CustomBottomBar extends StatelessWidget {
       title: "lbl_home".tr,
       type: BottomBarEnum.Home,
     ),
-    BottomMenuModel(
-      icon: ImageConstant.imgNavmessage,
-      activeIcon: ImageConstant.imgNavmessage,
-      title: "lbl_message".tr,
-      type: BottomBarEnum.Message,
-    ),
+    // BottomMenuModel(
+    //   icon: ImageConstant.imgNavmessage,
+    //   activeIcon: ImageConstant.imgNavmessage,
+    //   title: "lbl_message".tr,
+    //   type: BottomBarEnum.Message,
+    // ),
     BottomMenuModel(
       icon: ImageConstant.imgNavsaved,
       activeIcon: ImageConstant.imgNavsaved,

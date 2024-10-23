@@ -1,8 +1,13 @@
-import 'package:get/get.dart';/// This class is used in the [saved_item_widget] screen.
-class SavedItemModel {Rx<String> uxdesignerTxt = Rx("UX Designer");
+import 'package:get/get.dart';
 
-Rx<String> dummystudioTxt = Rx("Dummy Studio");
+class SavedItemModel {
+  RxString uxdesignerTxt = ''.obs;
+  RxString dummystudioTxt = ''.obs;
+  RxString dummystudio2Txt = ''.obs;
+  RxString dummystudio3Txt = ''.obs;
+  RxString dummystudio4Txt = ''.obs;
+  RxString? id;
+}
 
-Rx<String>? id = Rx("");
 
- }
+
