@@ -50,16 +50,22 @@ Future<void> main() async {
     ),
   );
 
-  RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+  // RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
-  if (initialMessage != null) {
-    // Route to Notification Screen if a notification opened the app
-    Get.to(() => NotificationScreen(notifications: notifications));
-  }
+  // if (initialMessage != null) {
+  //   // Route to Notification Screen if a notification opened the app
+  //   Get.to(() => NotificationScreen(notifications: notifications));
+  // }
 
   await FirebaseApi().initNotifications();
   await GetStorage.init();
-
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+  // Check for notification data
+    if (message.data.isNotEmpty) {
+      print("Notification clicked with data: ${message.data}");
+      Get.to(() => NotificationScreen(notifications: notifications));
+    }
+  });
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((value) {
