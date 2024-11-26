@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:get/get.dart';
 
 List<SavedPageModel> savedPageModelFromJson(String str) =>
     List<SavedPageModel>.from(json.decode(str).map((x) => SavedPageModel.fromJson(x)));

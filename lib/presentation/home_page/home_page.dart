@@ -1,5 +1,4 @@
 import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart';
-import 'package:jobpro/widgets/app_bar/appbar_subtitle_1.dart';
 
 import '../home_page/widgets/home_item_widget.dart';
 import 'controller/home_controller.dart';
@@ -14,9 +13,6 @@ import 'package:jobpro/widgets/app_bar/appbar_subtitle_2.dart';
 import 'package:jobpro/widgets/app_bar/custom_app_bar.dart';
 import 'package:jobpro/widgets/custom_icon_button.dart';
 import 'package:jobpro/widgets/custom_search_view.dart';
-import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart';
-import 'package:jobpro/utils/authentication_manager.dart';
-import 'package:jobpro/presentation/login_screen/login_screen.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key})

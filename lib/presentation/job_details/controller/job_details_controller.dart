@@ -10,13 +10,13 @@ class JobController extends GetxController {
   var description= ''.obs;
   var isBookmarked = false.obs;
   var message = ''.obs;
-  void update_saved_jobs(String name,String userEmail,String subject) async {
-    // Call your service here
-    var responseMessage = await JobDetailService().update_saved_jobs(name,userEmail,subject);
-    message.value = responseMessage;
-    isBookmarked.value = true;
-    // isSubmitted.value = true;  
-  }
+  // void update_saved_jobs(String name,String userEmail,String subject) async {
+  //   // Call your service here
+  //   var responseMessage = await JobDetailService().update_saved_jobs(name,userEmail,subject);
+  //   message.value = responseMessage;
+  //   isBookmarked.value = true;
+  //   // isSubmitted.value = true;  
+  // }
   @override
   void onInit() {
     fetchJobDetails();
@@ -26,7 +26,7 @@ class JobController extends GetxController {
   Future<void> fetchJobDetails() async {
   isLoading(true);
   try {
-    var recons = await jobDetailService.fetchJobDetails(limit:200);
+    var recons = await jobDetailService.fetchJobDetails();
     if (recons != null) {
       reconList.value = recons;
     }

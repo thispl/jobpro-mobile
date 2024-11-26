@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart';
-import 'package:jobpro/presentation/job_details/service/job_details_service.dart';
 import 'package:jobpro/utils/authentication_manager.dart';
 
 class HomeView extends StatefulWidget {

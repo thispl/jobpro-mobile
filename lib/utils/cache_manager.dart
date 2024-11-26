@@ -19,3 +19,18 @@ mixin CacheManager {
 }
 
 enum CacheManagerKey { TOKEN }
+// class CacheManager {
+//   final _storage = GetStorage();
+
+//   Future<void> saveToken(Map<String, String> tokenData) async {
+//     await _storage.write('tokenData', tokenData);
+//   }
+
+//   Map<String, String>? getToken() {
+//     return _storage.read<Map<String, String>>('tokenData');
+//   }
+
+//   void removeToken() {
+//     _storage.remove('tokenData');
+//   }
+// }

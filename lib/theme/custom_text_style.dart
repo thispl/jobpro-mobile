@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import '../core/app_export.dart';
 
 /// A collection of pre-defined text styles for customizing text appearance,

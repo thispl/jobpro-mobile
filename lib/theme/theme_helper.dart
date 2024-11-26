@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 
@@ -85,7 +84,7 @@ class ThemeHelper {
         ),
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateColor.resolveWith((states) {
+        fillColor:MaterialStateColor.resolveWith((states) {
           if (states.contains(MaterialState.selected)) {
             return colorScheme.primary;
           }
@@ -207,22 +206,16 @@ class ColorSchemes {
     tertiary: Color(0X1E2E2F3A),
     tertiaryContainer: Color(0XFF3CC8C8),
 
-    // Background colors
-    background: Color(0X1E2E2F3A),
-
     // Surface colors
     surface: Color(0X1E2E2F3A),
     surfaceTint: Color(0X145A5555),
-    surfaceVariant: Color(0XFF3CC8C8),
+    // surfaceContainerHighest: Color(0XFF3CC8C8),
 
     // Error colors
     error: Color(0X145A5555),
     errorContainer: Color(0XFF151517),
     onError: Color(0XFF0D0140),
     onErrorContainer: Color(0XFFFF784B),
-
-    // On colors(text colors)
-    onBackground: Color(0X1EFFFFFF),
     onInverseSurface: Color(0XFF0D0140),
     onPrimary: Color(0X145A5555),
     onPrimaryContainer: Color(0X1EFFFFFF),

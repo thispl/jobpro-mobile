@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:get/get.dart';
 
 List<JobDetailsModel> jobDetailsModelFromJson(String str) =>
     List<JobDetailsModel>.from(json.decode(str).map((x) => JobDetailsModel.fromJson(x)));
@@ -36,7 +35,8 @@ class JobDetailsModel {
   String mode_of_interview;
   String transportation_allowance;
   String food_allowance;
-  // String salary_type;  // Nullable Date field
+  String custom_allocated_on;
+  String custom_allocated_to;  // Nullable Date field
   
   JobDetailsModel({
     required this.name,
@@ -68,7 +68,8 @@ class JobDetailsModel {
     required this.transportation_allowance,
     required this.food_allowance,
 
-    // required this.salary_type,// Make it nullable
+    required this.custom_allocated_on,
+    required this.custom_allocated_to
   });
 
   // Factory method to convert from JSON
@@ -104,6 +105,9 @@ class JobDetailsModel {
         maximum_experience: json["maximum_experience"],
         transportation_allowance: (json["transportation_allowance"] != null && json["transportation_allowance"].isNotEmpty) ? json["transportation_allowance"] : '',
         food_allowance: (json["food_allowance"] != null && json["food_allowance"].isNotEmpty) ? json["food_allowance"] : '',
+        // custom_allocated_on: (json["custom_allocated_on"] != null && json["custom_allocated_on"].isNotEmpty) ? json["custom_allocated_on"] : '',
+        custom_allocated_on: (json["custom_allocated_on"] != null && json["custom_allocated_on"].isNotEmpty) ? json["custom_allocated_on"] : '',
+        custom_allocated_to: (json["custom_allocated_to"] != null && json["custom_allocated_to"].isNotEmpty) ? json["custom_allocated_to"] : '',
       );
 
   // Method to convert to JSON
@@ -138,6 +142,7 @@ class JobDetailsModel {
         "maximum_experience": maximum_experience,
         "transportation_allowance": transportation_allowance.isNotEmpty ? transportation_allowance : '',
         "food_allowance": food_allowance.isNotEmpty ? food_allowance : '',
-        // "salary_type": salary_type.isNotEmpty ? salary_type : '',
+        "custom_allocated_on": custom_allocated_on.isNotEmpty ? custom_allocated_on : '',
+        "custom_allocated_to": custom_allocated_to.isNotEmpty ? custom_allocated_to : 'hr@groupteampro.com',
       };
 }

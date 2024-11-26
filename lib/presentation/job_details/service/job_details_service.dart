@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:get/get_connect.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:get/get.dart';
 import 'package:jobpro/presentation/job_details/model/job_details_model.dart';
@@ -18,7 +17,7 @@ class JobDetailService extends GetConnect with CacheManager {
     super.onInit();
   }
 
-  Future<List<JobDetailsModel>?> fetchJobDetails({required int limit}) async {
+  Future<List<JobDetailsModel>?> fetchJobDetails() async {
     try {
       print('Recon URL: $reconUrl'); 
       String apiKey = '4aedf12d2330fbe';

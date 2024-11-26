@@ -8,26 +8,18 @@ import 'package:jobpro/widgets/custom_elevated_button.dart';
 import 'package:jobpro/widgets/custom_text_form_field.dart';
 
 import 'package:jobpro/utils/authentication_manager.dart';
-// import 'package:flutter_otp/flutter_otp.dart';
-
-// ignore_for_file: must_be_immutable
-// class LoginScreen extends GetWidget<LoginController> {
-//   LoginScreen({Key? key}) : super(key: key);
-
-//   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreenOtp extends StatefulWidget {
+  LoginScreenOtp({Key? key}) : super(key: key);
   
   @override
   _LoginViewState createState() => _LoginViewState();
 }
-
-class _LoginViewState extends State<LoginScreen> {
+class _LoginViewState extends State<LoginScreenOtp> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   LoginViewModel _viewModel = Get.put(LoginViewModel());
-
-  TextEditingController emailCtr = TextEditingController();
-  TextEditingController passwordCtr = TextEditingController();
+  TextEditingController phonectr=TextEditingController();
+  // TextEditingController emailCtr = TextEditingController();
+  // TextEditingController passwordCtr = TextEditingController();
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -91,31 +83,7 @@ class _LoginViewState extends State<LoginScreen> {
                     style: CustomTextStyles.titleSmallBluegray400_1,
                   ),
                 ),
-                // CustomOutlinedButton(
-                //   height: getVerticalSize(56),
-                //   text: "msg_continue_with_google".tr,
-                //   margin: getMargin(top: 31),
-                //   leftIcon: Container(
-                //     margin: getMargin(right: 12),
-                //     child: CustomImageView(svgPath: ImageConstant.imgGooglesymbol1),
-                //   ),
-                //   buttonStyle: CustomButtonStyles.outlinePrimary,
-                //   buttonTextStyle: theme.textTheme.titleMedium!,
-                //   onTap: () {
-                //     onTapContinuewith();
-                //   },
-                // ),
-                // CustomOutlinedButton(
-                //   height: getVerticalSize(56),
-                //   text: "msg_continue_with_apple".tr,
-                //   margin: getMargin(top: 16),
-                //   leftIcon: Container(
-                //     margin: getMargin(right: 12),
-                //     child: CustomImageView(svgPath: ImageConstant.imgIconApple),
-                //   ),
-                //   buttonStyle: CustomButtonStyles.outlinePrimary,
-                //   buttonTextStyle: theme.textTheme.titleMedium!,
-                // ),
+
                 Padding(
                   padding: getPadding(left: 33, top: 26, right: 33),
                   child: Row(
@@ -146,47 +114,19 @@ class _LoginViewState extends State<LoginScreen> {
                     ],
                   ),
                 ),
+                
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: getPadding(top: 28),
                     child: Text(
-                      "lbl_email".tr,
+                      "Phone Number",
                       style: theme.textTheme.titleSmall,
                     ),
                   ),
                 ),
-                CustomTextFormField(
-                  controller: emailCtr,
-                  margin: getMargin(top: 5),
-                  hintText: "msg_enter_your_email".tr,
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 139, 139, 139),fontSize: 12),
-              
-                  textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.emailAddress,
-                  textStyle: TextStyle(color: const Color.fromRGBO(0, 0, 0, 1)),
-                  validator: (value) {
-                    if (value == null || (!isValidEmail(value, isRequired: true))) {
-                      return "<b>Please enter valid email";
-                    }
-                    
-                    return null;
-                  },
-                  contentPadding: getPadding(left: 7, top: 7, right: 7, bottom: 7),
-                  
-                ),
-                // Align(
-                //   alignment: Alignment.centerLeft,
-                //   child: Padding(
-                //     padding: getPadding(top: 28),
-                //     child: Text(
-                //       "Phone Number",
-                //       style: theme.textTheme.titleSmall,
-                //     ),
-                //   ),
-                // ),
                 // CustomTextFormField(
-                //   controller: emailCtr,
+                //   controller: phonectr,
                 //   margin: getMargin(top: 5),
                 //   hintText: "Enter your Phone Number",
                 //   hintStyle: TextStyle(color: Color.fromARGB(255, 139, 139, 139),fontSize: 12),
@@ -196,7 +136,7 @@ class _LoginViewState extends State<LoginScreen> {
                 //   textStyle: TextStyle(color: const Color.fromRGBO(0, 0, 0, 1)),
                 //   validator: (value) {
                 //     if (value == null || (!isValidEmail(value, isRequired: true))) {
-                //       return "<b>Please enter valid phone number";
+                //       return "<b>Please enter valid phone number</b>";
                 //     }
                     
                 //     return null;
@@ -204,89 +144,61 @@ class _LoginViewState extends State<LoginScreen> {
                 //   contentPadding: getPadding(left: 7, top: 7, right: 7, bottom: 7),
                   
                 // ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: getPadding(top: 28),
-                    child: Text(
-                      "Password",
-                      style: theme.textTheme.titleSmall,
-                    ),
-                  ),
-                ),
                 CustomTextFormField(
-                  controller: passwordCtr,
-                  margin: getMargin(top: 9),
-                  hintText: "Enter your Password",
+                  controller: phonectr,
+                  margin: getMargin(top: 5),
+                  hintText: "Enter your Phone Number",
                   hintStyle: TextStyle(color: Color.fromARGB(255, 139, 139, 139),fontSize: 12),
+              
                   textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.visiblePassword,
-                  textStyle: TextStyle(color: Colors.black),
+                  textInputType: TextInputType.phone,
+                  textStyle: TextStyle(color: const Color.fromRGBO(0, 0, 0, 1)),
                   validator: (value) {
-                    if (value == null) {
-                      return "Please enter correct password";
+                    if (value == null || value.isEmpty){
+                      return "<b>Please enter valid phone number<b>";
                     }
+                    
                     return null;
                   },
                   contentPadding: getPadding(left: 7, top: 7, right: 7, bottom: 7),
+                  
                 ),
-                
                 CustomElevatedButton(
-                  text: "Login",
-                  margin: getMargin(top: 40),
-                  buttonStyle: ElevatedButton.styleFrom(
-                      primary: theme.colorScheme.primary, // Set the background color
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(getHorizontalSize(32.00)),
-                        
-                      ),
-                      minimumSize: Size(10, 40), // Width and height of the button
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-                    ),
-                    onTap: () async {
+                  text: "Send OTP",
+                  margin: getMargin(top: 20),
+                  buttonStyle: CustomButtonStyles.fillPrimary,
+                  onTap: () async {
                         if (_formKey.currentState?.validate() ?? false) {
-                          await _viewModel.loginUser(emailCtr.text, passwordCtr.text);                          
+                          await _viewModel.loginUser(phonectr.text);                          
                         }
                         
                       },
-                ),
-                // Padding(
-                //   padding: getPadding(bottom: 1),
-                //   child: GestureDetector(
-                //     onTap: () => ResetPasswordScreen(),
-                //     child: Text(
-                //       "Forgot Password?",
-                //       style: TextStyle(color: Color.fromARGB(255, 105, 105, 105), fontSize: 12),
-                //     ),
-                //   ),
+                ),            
+                // CustomElevatedButton(
+                  
+                //   text: "Send OTP",
+                //   // child: Text(
+                //   //     "Phone Number",
+                //   //     style: theme.textTheme.titleSmall,
+                //   //   ),
+                //   margin: getMargin(top: 40),
+                //   // buttonStyle: ElevatedButton.styleFrom(
+                //   //     primary: theme.colorScheme.primary, // Set the background color
+                //   //     shape: RoundedRectangleBorder(
+                //   //       borderRadius: BorderRadius.circular(getHorizontalSize(42.00)),
+                        
+                //   //     ),
+                //   //     minimumSize: Size(30, 50), // Width and height of the button
+                //   //     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                //   //   ),
+                //     onTap: () async {
+                //         if (_formKey.currentState?.validate() ?? false) {
+                //           await _viewModel.loginUser(phonectr.text);                          
+                //         }
+                        
+                //       },
                 // ),
-                Padding(
-                  padding: getPadding(left: 41, top: 26, right: 41),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: getPadding(bottom: 1),
-                        child: Text(
-                          "msg_don_t_have_an_account".tr,
-                          style: TextStyle(color: Color.fromARGB(255, 105, 105, 105),fontSize: 12),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          onTapTxtLargelabelmediu();
-                        },
-                        child: Padding(
-                          padding: getPadding(left: 2),
-                          child: Text(
-                            "lbl_sign_up".tr,
-                            style: TextStyle(color: theme.colorScheme.primary,fontSize: 14)
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                
                 Container(
                   width: getHorizontalSize(245),
                   margin: getMargin(left: 40, top: 84, right: 40, bottom: 5),
@@ -330,33 +242,6 @@ class _LoginViewState extends State<LoginScreen> {
     Get.toNamed(AppRoutes.signUpCreateAcountScreen);
   }
 }
-class LoginService extends GetConnect {
-  final String loginUrl =
-      'https://erp.teamproit.com/api/method/login';
-
-  Future<LoginResponseModel?> fetchLogin(LoginRequestModel model) async {
-    var token = '';
-    print(loginUrl);
-    print(model.toJson());
-    final response = await post(
-      loginUrl,
-      model.toJson(),
-    );
-    
-    if (response.statusCode == HttpStatus.ok) {
-      response.headers?.forEach((key, value) {
-        if (key == 'set-cookie') {
-          token = value;
-          print(token);
-        }
-      });
-      return LoginResponseModel.fromJson({'token': token});
-    } else {
-      return null;
-    }
-  }
-}
-
 class LoginResponseModel {
   String? token;
 
@@ -367,19 +252,17 @@ class LoginResponseModel {
   }
 }
 class LoginRequestModel {
-  String? usr;
-  String? pwd;
+  String? mobile;
 
-  LoginRequestModel({this.usr, this.pwd});
+
+  LoginRequestModel({this.mobile});
 
   Map toJson() {
     final Map data = new Map();
-    data['usr'] = this.usr;
-    data['pwd'] = this.pwd;
+    data['mobile'] = this.mobile;
     return data;
   }
 }
-
 
 class LoginViewModel extends GetxController {
   late final LoginService _loginService;
@@ -392,22 +275,25 @@ class LoginViewModel extends GetxController {
     _authManager = Get.put(AuthenticationManager());
   }
 
-  Future<void> loginUser(String email, String password) async {
-    print(email);
-    print(password);
+  Future<String> loginUser(String phone) async {
+    print(phone);
+    
     final response = await _loginService
-        .fetchLogin(LoginRequestModel(usr: email, pwd: password));
+        .fetchLogin(LoginRequestModel(mobile: phone));
         print(response);
     if (response != null) {
-      _authManager.login(response.token);
-      print(email); 
-      Get.toNamed(AppRoutes.jobDetails);
+    // _authManager.login(phone);
+      
+      print(phone); 
+      Get.toNamed(AppRoutes.enterOtpScreen, arguments: {'phone': phone,'otp': response.token!});
+      // Get.toNamed(AppRoutes.enterOtpScreen);
+      return response.token!;
     } else {
       Get.defaultDialog(
         backgroundColor: Colors.white,
            content: RichText(
             text: TextSpan(
-              text: 'User not found!',
+              text: 'Not a valid phone number!',
               style: TextStyle(
                 color: const Color.fromARGB(255, 134, 124, 123), 
                 fontSize: 16.0, 
@@ -419,7 +305,35 @@ class LoginViewModel extends GetxController {
           onConfirm: () {
             Get.back();
           });
+          return "null";
     }
   }
 }
 
+class LoginService extends GetConnect {
+  final String loginUrl =
+      'https://erp.teamproit.com/api/method/jobpro.jobpro_web.otp_request';
+
+  Future<LoginResponseModel?> fetchLogin(LoginRequestModel model) async {
+    var token = '';
+    print(loginUrl);
+    print(model.toJson());
+    final response = await post(
+      loginUrl,
+      model.toJson(),
+    );
+    print(response);
+    if (response.statusCode == HttpStatus.ok) {
+      // var data = json.decode(response.body);
+      response.body?.forEach((key, value) {
+        if (key == 'message') {
+          token = value;
+          print(token);
+        }
+      });
+      return LoginResponseModel.fromJson({'token': token});
+    } else {
+      return null;
+    }
+  }
+}

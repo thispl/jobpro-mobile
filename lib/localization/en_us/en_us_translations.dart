@@ -74,7 +74,7 @@ final Map<String, String> enUs = {
   "msg_we_have_just_sent":
       "We have just sent you 4 digit code via your email example@gmail.com",
   "msg_we_have_just_sent2":
-      "We have just sent you 4 digit code via your email ",
+      "We have just sent you 6 digit code via your sms ",
 
   // Home Screen
   "lbl_recent_jobs": "Recent Jobs",

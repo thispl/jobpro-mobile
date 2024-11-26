@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart';
 import 'package:jobpro/presentation/saved_page/controller/saved_page_controller.dart';
 import 'package:jobpro/widgets/custom_icon_button.dart';
 
-import '../saved_page/widgets/saved_item_widget.dart';
-import 'package:get/get.dart'; // Don't forget to import Get
+// Don't forget to import Get
 import 'package:jobpro/core/app_export.dart';
 import 'package:jobpro/widgets/app_bar/appbar_image.dart';
 import 'package:jobpro/widgets/app_bar/appbar_title.dart';
@@ -25,7 +23,7 @@ class SavedPage extends StatelessWidget {
             svgPath: ImageConstant.imgGroup162799,
             margin: getMargin(left: 24, top: 13, bottom: 13),
             onTap: () {
-              Get.back(); // Update this if necessary
+              Navigator.pop(context); // Update this if necessary
             },
           ),
           centerTitle: true,
@@ -188,7 +186,5 @@ class SavedPage extends StatelessWidget {
   ///
   /// When the action is triggered, this function uses the [Get] package to 
   /// navigate to the previous screen in the navigation stack.
-  void onTapArrowbackone() {
-    Get.back();
-  }
+  
 }

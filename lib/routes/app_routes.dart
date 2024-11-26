@@ -1,7 +1,7 @@
-import 'package:flutter/services.dart';
 import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart';
-import 'package:jobpro/presentation/job_details_page/models/job_details_model.dart';
 import 'package:jobpro/presentation/job_details/service/job_details_service.dart';
+import 'package:jobpro/presentation/login_screen_otp/login_screen_otp.dart';
+import 'package:jobpro/presentation/notification/notification_screen.dart';
 import 'package:jobpro/presentation/splash_screen/splash_screen.dart';
 import 'package:jobpro/presentation/splash_screen/binding/splash_binding.dart';
 import 'package:jobpro/presentation/onboarding_one_screen/onboarding_one_screen.dart';
@@ -27,7 +27,6 @@ import 'package:jobpro/presentation/login_screen/binding/login_binding.dart';
 import 'package:jobpro/presentation/enter_otp_screen/enter_otp_screen.dart';
 import 'package:jobpro/presentation/enter_otp_screen/binding/enter_otp_binding.dart';
 import 'package:jobpro/presentation/home/home.dart';
-import 'package:jobpro/presentation/job_details/model/job_details_model.dart';
 import 'package:jobpro/presentation/home_container_screen/home_container_screen.dart';
 import 'package:jobpro/presentation/home_container_screen/binding/home_container_binding.dart';
 import 'package:jobpro/presentation/search_screen/search_screen.dart';
@@ -62,11 +61,9 @@ import 'package:jobpro/presentation/app_navigation_screen/app_navigation_screen.
 import 'package:jobpro/presentation/app_navigation_screen/binding/app_navigation_binding.dart';
 import 'package:get/get.dart';
 // ignore: duplicate_import
-import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart' as jobController;
 // ignore: duplicate_import
 
 import 'package:jobpro/presentation/job_details/job_details_page.dart' as JobPage;
-import 'package:jobpro/presentation/job_details/model/job_details_model.dart';
 
 class AppRoutes {
   static const String splashScreen = '/splash_screen';
@@ -92,6 +89,8 @@ class AppRoutes {
   static const String selectACountryScreen = '/select_a_country_screen';
 
   static const String loginScreen = '/login_screen';
+
+  static const String loginScreenOtp = '/login_screen_otp';
 
   static const String homeView= '/home';
 
@@ -236,6 +235,13 @@ class AppRoutes {
       ],
     ),
     GetPage(
+      name: loginScreenOtp,
+      page: () => LoginScreenOtp(),
+      bindings: [
+        LoginBinding(),
+      ],
+    ),
+    GetPage(
       name: homeView,
       page: () => HomeView(),
       // bindings: [
@@ -367,6 +373,10 @@ class AppRoutes {
       bindings: [
         SplashBinding(),
       ],
-    )
+    ),
+    GetPage(
+  name: '/notifications',
+  page: () => NotificationScreen(notifications: notifications),
+),
   ];
 }

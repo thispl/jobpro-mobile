@@ -6,322 +6,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:http/http.dart';
 import 'package:jobpro/presentation/job_details/model/job_details_model.dart';
+import 'package:jobpro/presentation/login_screen/login_screen.dart';
+import 'package:jobpro/presentation/notification/notification_screen.dart';
+import 'package:jobpro/presentation/notifications_screen/notifications_screen.dart';
 import 'package:jobpro/presentation/profile_page/profile_page.dart';
+import 'package:jobpro/utils/authentication_manager.dart';
 import 'package:jobpro/utils/user_controller.dart';
-import 'package:jobpro/widgets/app_bar/appbar_image_1.dart';
 
 import 'package:jobpro/widgets/custom_elevated_button.dart';
-import 'package:flutter/material.dart'; 
-import 'package:get/get.dart';
 import 'package:jobpro/presentation/job_details/controller/job_details_controller.dart'; 
 import 'package:jobpro/core/app_export.dart';
 import 'package:jobpro/widgets/app_bar/appbar_circleimage.dart';
 // import 'package:jobpro/widgets/app_bar/appbar_image_1.dart';
 import 'package:jobpro/widgets/app_bar/appbar_subtitle.dart';
-import 'package:jobpro/widgets/app_bar/appbar_subtitle_2.dart';
-import 'package:jobpro/widgets/app_bar/custom_app_bar.dart';
-import 'package:jobpro/widgets/custom_icon_button.dart';
 
 import 'package:jobpro/presentation/saved_page/saved_page.dart';
 
 import 'package:intl/intl.dart';
 import 'package:jobpro/widgets/custom_search_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 
 import 'dart:io'; // Import dart:io for platform checking
 import 'package:url_launcher/url_launcher.dart'; 
 import 'package:timeago/timeago.dart' as timeago;
- 
-// import "package:jobpro/presentation/saved_page/controller/saved_controller.dart";
-// import 'package:jobpro/presentation/saved_page/models/saved_item_model.dart';
-// import 'package:jobpro/presentation/saved_page/models/saved_model.dart';
-
-// class JobDetailsPage extends StatelessWidget {
-//   final JobController recon = Get.put(JobController());
-//   // final SavedController savedController = Get.put(SavedController(SavedModel().obs)); // Initialize SavedController
-//   final int _pageIndex = 0; // Default page index
-  
-//   // final String userEmail = Get.arguments['userEmail'] ?? 'No email passed';
-
-// @override
-// Widget build(BuildContext context) {
-//   return SafeArea(
-//     child: Scaffold(
-//       resizeToAvoidBottomInset: false,
-//       backgroundColor: appTheme.whiteA70001,
-//       appBar: AppBar(
-//         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-//         leadingWidth: getHorizontalSize(149),
-//         leading: Padding(
-//           padding: getPadding(left: 10),
-//           child: Image.asset(
-//             "assets/images/TEAMPRO_STROKE_2.png",
-//             height: getSize(190),
-//             width: getSize(100),
-//             fit: BoxFit.contain,
-//           ),
-//         ),
-//         title: Padding(
-//           padding: getPadding(),
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.start,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               AppbarSubtitle(
-//                 text: "msg_hi_welcome_back".tr,
-//               ),
-//             ],
-//           ),
-//         ),
-//         actions: [
-//           Padding(
-//             padding: const EdgeInsets.only(right: 14),
-//             child: AppbarCircleimage(
-//               imagePath: ImageConstant.imgImage50x50,
-//               margin: getMargin(),
-//             ),
-//           ),
-//         ],
-//       ),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Align(
-//               alignment: Alignment.center,
-//               child: CustomSearchView(
-//                 margin: getMargin(left: 24, top: 30, right: 24),
-//                 hintText: "lbl_search".tr,
-//                 hintStyle: CustomTextStyles.titleMediumBluegray400,
-//                 alignment: Alignment.center,
-//                 prefix: Container(
-//                   margin: getMargin(
-//                     left: 16,
-//                     top: 17,
-//                     right: 8,
-//                     bottom: 17,
-//                   ),
-//                   child: CustomImageView(
-//                     svgPath: ImageConstant.imgSearch,
-//                   ),
-//                 ),
-//                 prefixConstraints: BoxConstraints(
-//                   maxHeight: getVerticalSize(52),
-//                 ),
-//                 suffix: Container(
-//                   margin: getMargin(
-//                     left: 30,
-//                     top: 17,
-//                     right: 16,
-//                     bottom: 17,
-//                   ),
-//                   child: CustomImageView(
-//                     svgPath: ImageConstant.imgFilterPrimary,
-//                   ),
-//                 ),
-//                 suffixConstraints: BoxConstraints(
-//                   maxHeight: getVerticalSize(52),
-//                 ),
-//               ),
-//             ),
-//             Padding(
-//               padding: getPadding(left: 24, top: 22),
-//               child: Text(
-//                 "lbl_recent_jobs".tr,
-//                 style: CustomTextStyles.titleMediumInter,
-//               ),
-//             ),
-//             Obx(() {
-//               if (recon.isLoading.value) {
-//                 return const Center(child: CircularProgressIndicator());
-//               } else if (recon.reconList.isEmpty) {
-//                 return const Center(child: Text('No job details available.'));
-//               } else {
-//                 return RefreshIndicator(
-//                   onRefresh: () async {
-//                     await recon.fetchJobDetails();
-//                   },
-//                   child: ListView.separated(
-//                     shrinkWrap: true,
-//                     physics: const NeverScrollableScrollPhysics(), // Disable scrolling
-//                     separatorBuilder: (context, index) {
-//                       return SizedBox(height: getVerticalSize(16));
-//                     },
-//                     itemCount: recon.reconList.length,
-//                     itemBuilder: (context, index) {
-//                       DateTime creationDate = DateFormat("yyyy-MM-dd").parse('${recon.reconList[index].creation}');
-//                       DateTime nowDate = DateTime.now();
-//                       int differenceInDays = nowDate.difference(creationDate).inDays;
-
-//                       return GestureDetector(
-//                         onTap: () {
-//                           Get.toNamed(AppRoutes.jobDetailsTabContainerScreen, arguments: {
-//                             'subject': recon.reconList[index].subject,
-//                             'customer': recon.reconList[index].customer,
-//                             'currency': recon.reconList[index].currency,
-//                             'amount': recon.reconList[index].amount,
-//                             'creation': '$differenceInDays days ago',
-//                             'jobType': recon.reconList[index].subject,
-//                             'position': recon.reconList[index].subject,
-//                             'description': recon.reconList[index].description,
-//                             'custom_recruiter_contact': recon.reconList[index].custom_recruiter_contact ?? '7305428777',
-//                           });
-//                         },
-//                         child: Container(
-//                           padding: getPadding(all: 16),
-//                           decoration: AppDecoration.outlineIndigo.copyWith(
-//                             borderRadius: BorderRadiusStyle.roundedBorder16,
-//                           ),
-//                           child: Column(
-//                             mainAxisSize: MainAxisSize.min,
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Row(
-//                                 crossAxisAlignment: CrossAxisAlignment.start,
-//                                 children: [
-//                                   CustomIconButton(
-//                                     height: getSize(48),
-//                                     width: getSize(48),
-//                                     padding: getPadding(all: 8),
-//                                     child: CustomImageView(svgPath: ImageConstant.imgGroupPrimary),
-//                                   ),
-//                                   SizedBox(width: 12),
-//                                   Expanded(
-//                                     child: Column(
-//                                       crossAxisAlignment: CrossAxisAlignment.start,
-//                                       children: [
-//                                         GestureDetector(
-//                                           onTap: () {
-//                                             Get.toNamed(AppRoutes.jobDetailsTabContainerScreen, arguments: {
-//                                               'subject': recon.reconList[index].subject,
-//                                               'customer': recon.reconList[index].customer,
-//                                               'currency': recon.reconList[index].currency,
-//                                               'amount': recon.reconList[index].amount,
-//                                               'creation': '$differenceInDays days ago',
-//                                               'jobType': recon.reconList[index].subject,
-//                                               'position': recon.reconList[index].subject,
-//                                               'description': recon.reconList[index].description,
-//                                               'custom_recruiter_contact': recon.reconList[index].custom_recruiter_contact ?? '7305428777',
-//                                             });
-//                                           },
-//                                           child: Text(
-//                                             recon.reconList[index].subject,
-//                                             style: CustomTextStyles.titleMediumBold_1,
-//                                             softWrap: true,
-//                                             maxLines: 3,
-//                                             overflow: TextOverflow.ellipsis,
-//                                           ),
-//                                         ),
-//                                         Padding(
-//                                           padding: getPadding(top: 5),
-//                                           child: Text(
-//                                             recon.reconList[index].customer,
-//                                             softWrap: true,
-//                                             style: CustomTextStyles.labelLargeBluegray300SemiBold,
-//                                           ),
-//                                         ),
-//                                       ],
-//                                     ),
-//                                   ),
-//                                   GestureDetector(
-//                                     onTap: () {
-//                                       recon.update_saved_jobs(
-//                                         recon.reconList[index].name,
-//                                         "divya1234@gmail.com",
-//                                         recon.reconList[index].subject,
-//                                       );
-//                                     },
-//                                     child: Obx(() {
-//                                       bool isBookmarked = recon.isBookmarked.value;
-//                                       return CustomImageView(
-//                                         svgPath: ImageConstant.imgBookmark,
-//                                         height: getSize(24),
-//                                         width: getSize(24),
-//                                         margin: getMargin(bottom: 25),
-//                                       );
-//                                     }),
-//                                   ),
-//                                 ],
-//                               ),
-//                               Padding(
-//                                 padding: getPadding(left: 60, top: 9),
-//                                 child: Text(
-//                                   '${recon.reconList[index].currency} - ${recon.reconList[index].amount}',
-//                                   style: CustomTextStyles.labelLargeGray600_1,
-//                                 ),
-//                               ),
-//                               Align(
-//                                 alignment: Alignment.center,
-//                                 child: Padding(
-//                                   padding: getPadding(top: 13),
-//                                   child: Row(
-//                                     mainAxisAlignment: MainAxisAlignment.center,
-//                                     children: [
-//                                       CustomElevatedButton(
-//                                         height: getVerticalSize(28),
-//                                         width: getHorizontalSize(70),
-//                                         text: "lbl_fulltime".tr,
-//                                         buttonTextStyle: theme.textTheme.labelLarge!,
-//                                       ),
-//                                       CustomElevatedButton(
-//                                         height: getVerticalSize(28),
-//                                         width: getHorizontalSize(103),
-//                                         text: '$differenceInDays days ago',
-//                                         margin: getMargin(left: 8),
-//                                         buttonTextStyle: theme.textTheme.labelLarge!,
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       );
-//                     },
-//                   ),
-//                 );
-//               }
-//             }),
-//           ],
-//         ),
-//       ),
-//         bottomNavigationBar: BottomNavigationBar(
-//           type: BottomNavigationBarType.fixed,
-//           items: const <BottomNavigationBarItem>[
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.home),
-//               label: 'Home',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.bookmark),
-//               label: 'Saved',
-//             ),
-//             BottomNavigationBarItem(
-//               icon: Icon(Icons.person),
-//               label: 'Profile',
-//             ),
-//           ],
-//           currentIndex: _pageIndex,
-//           onTap: (int index) {
-//             switch (index) {
-//               case 0: // Home
-//                 Get.off(() => JobDetailsPage());
-//                 break;
-//               case 1: // Saved
-//                 Get.off(() => SavedPage()); // Replace with your Saved page route
-//                 break;
-//               case 2: // Profile
-//                 Get.off(() => ProfilePage()); // Replace with your Profile page route
-//                 break;
-//             }
-//           },
-//         ),
-//       ),
-//     );
-//   }
-
-// }
 
 class JobDetailsPage extends StatefulWidget {
   @override
@@ -330,13 +39,16 @@ class JobDetailsPage extends StatefulWidget {
 
 class _JobDetailsPageState extends State<JobDetailsPage> {
   final JobController recon = Get.put(JobController());
-  final TextEditingController searchController = TextEditingController();
+  
+  TextEditingController searchController = TextEditingController();
   List<JobDetailsModel> filteredList = [];
   List<String> jobCategories = []; // List to display
   final int _pageIndex = 0; // Default page index
   bool isSearchActive = false; 
-  // final String userEmail = Get.arguments['userEmail'] ?? 'No email passed';
-  // Control the visibility of the search box
+  final AuthenticationManager _authManager = Get.put(AuthenticationManager());
+  late final String userEmail;
+  
+  
 
   @override
   void initState() {
@@ -344,7 +56,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
     // Initially display all jobs
     filteredList = List.from(recon.reconList); // Ensure you get a copy of the list
     searchController.addListener(_onSearchChanged);
-    fetchJobCategories(); // Listen for search input changes
+    fetchJobCategories(); 
+    userEmail = _authManager.getToken()!;
   }
 
   @override
@@ -357,8 +70,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
     String joburl = 'https://erp.teamproit.com/api/resource/Task?filters=[[%22service%22,%22in%22,[%22REC-I%22,%22REC-D%22]],["custom_job_category","!=",""],[%22status%22,%22in%22,[%22Open%22,%22Working%22,%22Pending%20Review%22,%22Overdue%22]]]&fields=[%22custom_job_category%22]&group_by=custom_job_category&order_by=creation%20desc&limit=500';
     try {
       print('Recon URL: $joburl'); 
-      String apiKey = '4aedf12d2330fbe';
-      String apiSecret = '2d72f01e8e1a60a';
+      String apiKey = 'daa4a43f429c844';
+      String apiSecret = '3b0d3fbc3c5e4ce';
       String token = 'token $apiKey:$apiSecret';
       var response = await get(
         Uri.parse(joburl),
@@ -389,10 +102,11 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       Get.snackbar('Error', 'An error occurred: $e');
     }
   }
-
+  
   // Method to filter job list based on search input
   void _onSearchChanged() {
     String query = searchController.text.toLowerCase();
+    // textInputAction: TextInputAction.done;
 
     setState(() {
       print('query $query');
@@ -512,7 +226,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       if (selectedCategories.isNotEmpty) {
         filteredList = filteredList.where((job) {
           // Ensure that job.custom_job_category is not null before checking
-          return job.custom_job_category != null && selectedCategories.contains(job.custom_job_category);
+          return selectedCategories.contains(job.custom_job_category);
         }).toList();
       }
     });
@@ -549,16 +263,20 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
               ],
             ),
           ),
-          actions: [
-
-            
+          actions: [           
             Padding(
               padding: const EdgeInsets.only(right: 14),
-              child: AppbarCircleimage(
-                imagePath: ImageConstant.imgImage50x50,
-                margin: getMargin(),
+              child: IconButton(
+                onPressed: () {
+                  Get.to(() => NotificationScreen(notifications: notifications,));
+                },
+                icon: Icon(
+                  Icons.notifications,
+                  size: getSize(34),
+                  color: Colors.black // Ensure `getSize` is defined elsewhere in your code
+                ),
               ),
-            ),
+            )
           ],
         ),
         body: SingleChildScrollView(
@@ -708,16 +426,16 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                                     style: CustomTextStyles.labelLargeBluegray300SemiBold, // Custom style for text
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: Text(
-                                                    differenceInDays > 0 
-                                                    ? "Closing in $differenceInDays days" 
-                                                    : "Expired", 
+                                                // Expanded(
+                                                //   child: Text(
+                                                //     differenceInDays > 0 
+                                                //     ? "Closing in $differenceInDays days" 
+                                                //     : "Expired", 
                                                      
-                                                    softWrap: true,
-                                                    style: CustomTextStyles.labelLargeBluegray300SemiBold, // Custom style for text
-                                                  ),
-                                                ),
+                                                //     softWrap: true,
+                                                //     style: CustomTextStyles.labelLargeBluegray300SemiBold, // Custom style for text
+                                                //   ),
+                                                // ),
                                               ],
                                             ),
                                           ),
@@ -847,23 +565,119 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                           width: getHorizontalSize(100),
                                           text: "Apply",
                                           buttonTextStyle: theme.textTheme.labelLarge!.copyWith(
-                                            color: Colors.white, // Sets text color
-                                            fontWeight: FontWeight.bold, // Custom font weight
-                                            fontSize: 11.0, // Custom font size
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 11.0,
                                           ),
                                           buttonStyle: ElevatedButton.styleFrom(
-                                            primary: Color.fromARGB(255, 16, 63, 102), // Background color of the button
-                                            onPrimary: Colors.white, // Text color when the button is pressed
+                                            primary: Color.fromARGB(255, 16, 63, 102),
+                                            onPrimary: Colors.white,
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(12), // Rounded corners
+                                              borderRadius: BorderRadius.circular(12),
                                             ),
-                                            elevation: 5, // Adds shadow effect to the button
+                                            elevation: 5,
                                           ),
-                                          // buttonTextStyle: theme.textTheme.labelLarge!,
-                                          onTap: () =>{
-                                            whatsapp(filteredList[index].subject, filteredList[index].custom_recruiter_contact)
+                                          onTap: () {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              backgroundColor: Colors.white,
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                  padding: EdgeInsets.all(16),
+                                                  child: Column(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children: <Widget>[
+                                                      ListTile(
+                                                        leading: FaIcon(
+                                                          FontAwesomeIcons.envelope,
+                                                          size: 30,
+                                                          color: Colors.red,
+                                                        ),
+                                                        title: Text('Email',style: TextStyle(color: Colors.black),),
+                                                        onTap: () {
+                                                          openEmailApp(
+                                                            context,
+                                                            recipient: filteredList[index].custom_allocated_to.isNotEmpty
+                                                                ? filteredList[index].custom_allocated_to
+                                                                : 'hr@groupteampro.com',
+                                                            subject: 'Job Application - ${filteredList[index].subject}',
+                                                            body: 'Hi, I am willing to apply for the Position: ${filteredList[index].subject}',
+                                                          );
+                                                          Navigator.pop(context); // Close the bottom sheet
+                                                        },
+                                                      ),
+                                                      ListTile(
+                                                        leading: FaIcon(
+                                                          FontAwesomeIcons.solidMessage,
+                                                          size: 30,
+                                                          color: Colors.blue,
+                                                        ),
+                                                        // leading: Icon(Icons.sms),
+                                                        title: Text('SMS',style: TextStyle(color: Colors.black)),
+                                                        onTap: () {
+                                                          sms(filteredList[index].subject, filteredList[index].custom_recruiter_contact);
+                                                          Navigator.pop(context); // Close the bottom sheet
+                                                        },
+                                                      ),
+                                                      ListTile(
+                                                        leading: Container(
+                                                          padding: EdgeInsets.all(6), // Adjust padding for desired icon size
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.green, // Background color for the icon
+                                                            shape: BoxShape.circle, // Circular shape for the icon background
+                                                          ),
+                                                          child: Icon(
+                                                            Icons.chat_bubble_rounded,
+                                                            color: Colors.white, // Icon color
+                                                          ),
+                                                        ),
+                                                        title: Text('WhatsApp',style: TextStyle(color: Colors.black)),
+                                                        onTap: () {
+                                                          whatsapp(
+                                                            filteredList[index].subject,
+                                                            filteredList[index].custom_recruiter_contact,
+                                                          );
+                                                          Navigator.pop(context); // Close the bottom sheet
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
                                           },
                                         ),
+                                        // CustomElevatedButton(
+                                        //   height: getVerticalSize(28),
+                                        //   width: getHorizontalSize(100),
+                                        //   text: "Apply",
+                                        //   buttonTextStyle: theme.textTheme.labelLarge!.copyWith(
+                                        //     color: Colors.white, // Sets text color
+                                        //     fontWeight: FontWeight.bold, // Custom font weight
+                                        //     fontSize: 11.0, // Custom font size
+                                        //   ),
+                                        //   buttonStyle: ElevatedButton.styleFrom(
+                                        //     primary: Color.fromARGB(255, 16, 63, 102), // Background color of the button
+                                        //     onPrimary: Colors.white, // Text color when the button is pressed
+                                        //     shape: RoundedRectangleBorder(
+                                        //       borderRadius: BorderRadius.circular(12), // Rounded corners
+                                        //     ),
+                                        //     elevation: 5, // Adds shadow effect to the button
+                                        //   ),
+                                        //   // buttonTextStyle: theme.textTheme.labelLarge!,
+                                        //   onTap: () =>{
+                                        //     openEmailApp(
+                                        //       context,
+                                        //       recipient: filteredList[index].custom_allocated_on.isNotEmpty
+                                        //         ? filteredList[index].custom_allocated_on 
+                                        //         : 'gifty.p@groupteampro.com',
+                                        //       subject: 'Job Application -  ${filteredList[index].subject}',
+                                        //       body: 'Hi, I am willing to apply for the Position: ${filteredList[index].subject}',
+                                        //     )
+                                        //     // sms(filteredList[index].subject, filteredList[index].custom_recruiter_contact)
+                                        //     // sendEmail(filteredList[index].subject,filteredList[index].custom_allocated_on)
+                                        //   },
+                                        // ),
                                         CustomElevatedButton(
                                           height: getVerticalSize(28),
                                           width: getHorizontalSize(103),
@@ -883,7 +697,8 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                             elevation: 5, // Adds shadow effect to the button
                                           ),
                                           onTap: () => {
-                                              Get.toNamed(AppRoutes.jobDetailsTabContainerScreen, arguments: {
+                                              Get.toNamed(AppRoutes.jobDetailsTabContainerScreen,
+                                               arguments: {
                                                 'subject': filteredList[index].subject,
                                                 'customer': filteredList[index].customer,
                                                 'currency': filteredList[index].currency,
@@ -894,7 +709,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                                 'description': filteredList[index].description,
                                                 'territory': filteredList[index].territory,
                                                 'custom_country_flag': filteredList[index].custom_country_flag,
-                                                'custom_recruiter_contact': filteredList[index].custom_recruiter_contact ?? '7305428777',
+                                                // 'custom_recruiter_contact': filteredList[index].custom_recruiter_contact,
                                                 'custom_is_customer_confidential': filteredList[index].custom_is_customer_confidential,
                                                 'salary_type': filteredList[index].salary_type,
                                                 'qualification_type': filteredList[index].qualification_type,
@@ -910,51 +725,18 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
                                                 'over_time':filteredList[index].over_time,
                                                 'transportation_allowance':filteredList[index].transportation_allowance,
                                                 'food_allowance':filteredList[index].food_allowance,
-                                                'name':filteredList[index].name,
                                                 // "userEmail":userEmail,
                                                 
                                                 
 
-                                              })
+                                              }
+                                              )
                                           },
                                         ),
                                       ],
                                     ),
                                   ),
-                                // Align(
-                                //   alignment: Alignment.center,
-                                //   child: Padding(
-                                //     padding: getPadding(top: 13),
-                                //     child: Row(
-                                //       mainAxisAlignment: MainAxisAlignment.center,
-                                //       children: [
-                                //         CustomElevatedButton(
-                                //           height: getVerticalSize(28),
-                                //           width: getHorizontalSize(70),
-                                //           text: "lbl_fulltime".tr,
-                                //           buttonTextStyle: theme.textTheme.labelLarge!,
-                                //         ),
-                                //         CustomElevatedButton(
-                                //           height: getVerticalSize(28),
-                                //           width: getHorizontalSize(103),
-                                //           text: '$differenceInDays days ago',
-                                //           margin: getMargin(left: 8),
-                                //           buttonTextStyle: theme.textTheme.labelLarge!,
-                                //         ),
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
-                                // if (differenceInDays < 5 && differenceInDays > 0)
-                                //   Positioned(
-                                //     top: 0,
-                                //     right: 0,
-                                //     child: Image.asset(
-                                //       'assets/images/20c5ae46-6ee6-413a-9285-550830dfadb4.png',
-                                //       height: 50, // Adjust the size according to your design
-                                //       width: 50,
-                                //     ),
-                                //   ),
+                                
                               ],
                             ),
                           ),
@@ -988,13 +770,13 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
           onTap: (int index) {
             switch (index) {
               case 0: // Home
-                Get.off(() => JobDetailsPage());
+                Get.to(() => JobDetailsPage());
                 break;
               case 1: // Saved
-                Get.off(() => SavedPage()); // Replace with your Saved page route
+                Get.to(() => SavedPage()); // Replace with your Saved page route
                 break;
-              case 2: // Profile
-                Get.off(() => ProfilePage()); // Replace with your Profile page route
+              case 2:
+                Get.to(() => ProfilePage()); // Replace with your Profile page route
                 break;
             }
           },
@@ -1002,7 +784,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       ),
     );
   }
-    whatsapp(String position,String custom_recruiter_contact) async {
+  Future<void>whatsapp(String position,String custom_recruiter_contact) async {
     String contact = (custom_recruiter_contact.length == 10) 
         ? custom_recruiter_contact 
         : "917305428777"; 
@@ -1028,18 +810,77 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
       await launchUrl(Uri.parse(webUrl), mode: LaunchMode.externalApplication);
     }
   }
-  String timeAgo(DateTime date) {
-  // Format the date relative to now with a suffix (e.g., "5 days ago")
-  String timeAgo = timeago.format(date, allowFromNow: true);
+  sms(String position, String custom_recruiter_contact) async {
+    String contact = (custom_recruiter_contact.length == 10) 
+        ? custom_recruiter_contact 
+        : "917305428777";
+    String message = 'Hi, I am willing to apply for the Position: $position';
+    String encodedMessage = Uri.encodeComponent(message);
+    String androidUrl = "sms:$contact?body=$encodedMessage";
+    String iosUrl = "sms:$contact&body=$encodedMessage";
+    
+    try {
+      if (Platform.isIOS) {
+        if (await canLaunchUrl(Uri.parse(iosUrl))) {
+          await launchUrl(Uri.parse(iosUrl));
+        }
+      } else {
+        if (await canLaunchUrl(Uri.parse(androidUrl))) {
+          await launchUrl(Uri.parse(androidUrl));
+        }
+      }
+    } catch (e) {
+      print('Error launching SMS: $e');
+    }
+  }
+  
+  Future<void>openEmailApp(BuildContext context, {required String recipient, required String subject, required String body}) async {
+    final mailtoLink = Uri(
+      scheme: 'mailto',
+      path: recipient,
+      query: 'subject=${Uri.encodeComponent(subject)}&body=${Uri.encodeComponent(body)}',
+    );
 
-  // Return the time ago string
-  return timeAgo;
-}
-Future<void> _makePhoneCall(String url) async {
- if (await canLaunch(url)) {
-   await launch(url);
- } else {
-   throw 'Could not launch $url';
- }
-}
+    // Attempt to launch the mailto link in the opened email app
+    if (await canLaunchUrl(mailtoLink)) {
+      await launchUrl(mailtoLink, mode: LaunchMode.externalApplication);
+    } else {
+      // Fallback if unable to compose the email
+      print("Failed to compose email.");
+    }
+
+  }
+  showNoMailAppsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("No Email App Found"),
+          content: Text("Please install an email app to use this feature."),
+          actions: <Widget>[
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+  String timeAgo(DateTime date) {
+ 
+    String timeAgo = timeago.format(date, allowFromNow: true);
+
+
+    return timeAgo;
+  } 
+  Future<void> _makePhoneCall(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+  }
 }

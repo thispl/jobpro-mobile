@@ -8,7 +8,17 @@ class AuthenticationManager extends GetxController with CacheManager {
     isLogged.value = false;
     removeToken();
   }
+  // void login(Map<String, String> tokenData) async {
+  //   isLogged.value = true;
+  //   await saveToken(tokenData); // Save the token data as a Map
+  // }
 
+  // void checkLoginStatus() {
+  //   final tokenData = getToken();
+  //   if (tokenData != null && tokenData['otp'] != null && tokenData['phone'] != null) {
+  //     isLogged.value = true;
+  //   }
+  // }
   void login(String? token) async {
     isLogged.value = true;
     //Token is cached

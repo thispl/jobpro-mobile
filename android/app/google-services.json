@@ -1,0 +1,36 @@
+{
+  "project_info": {
+    "project_number": "892620492679",
+    "project_id": "jobpro-f8bef",
+    "storage_bucket": "jobpro-f8bef.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892620492679:android:93d4a6f222e9c0125f4d22",
+        "android_client_info": {
+          "package_name": "com.jobpro.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk3Qp539bEB4Jez5ZATKfkdhz1tD1IVng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1",
+  "client_id":"108684662307148996024",
+  "client_email":"jobpro@jobpro-f8bef.iam.gserviceaccount.com",
+  "private_key":"f2152785d5517fe407d96fc0e0bf22866f3c17e6",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email%40jobpro-f8bef.iam.gserviceaccount.com"
+}
