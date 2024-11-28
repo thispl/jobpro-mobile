@@ -9,11 +9,7 @@ import 'package:jobpro/utils/authentication_manager.dart';
 class UserController extends GetxController {
   final AuthenticationManager _authManager = Get.put(AuthenticationManager());
   var userEmail = ''.obs;
-  var notifications = <NotificationModel>[].obs;
 
-  void addNotification(NotificationModel notification) {
-    notifications.add(notification);
-  }
   void setUserEmail(String email) {
     userEmail.value = email;
   }

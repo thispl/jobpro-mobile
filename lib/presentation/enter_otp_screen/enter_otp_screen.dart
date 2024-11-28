@@ -507,7 +507,7 @@ Future<String> verifyotp(String orgOtp, String otpData, String phone, String dev
       
       return data['message'] ?? 'Verification successful';
     } else {
-      print('Error: ${response.statusCode}');
+      print('Error: ${response.headers}');
       return 'Error: ${response.statusCode}';
     }
   } catch (e) {

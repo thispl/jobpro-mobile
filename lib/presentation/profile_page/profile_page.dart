@@ -93,6 +93,15 @@ final AuthenticationManager _authManager = Get.put(AuthenticationManager());
           title: AppbarTitle(
             text: "lbl_profile".tr,
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  _authManager.logOut();
+                  Get.off(() => LoginScreenOtp());
+                },
+                icon:  Icon(Icons.logout_rounded,size: getSize(34),
+                  color: Colors.black))
+          ],
         ),
         body: 
         

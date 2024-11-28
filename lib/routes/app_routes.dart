@@ -151,6 +151,8 @@ class AppRoutes {
 
   static const String initialRoute = '/initialRoute';
 
+  static const String notification = '/notification';
+
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -375,8 +377,8 @@ class AppRoutes {
       ],
     ),
     GetPage(
-  name: '/notifications',
-  page: () => NotificationScreen(notifications: notifications),
+  name: notification,
+  page: () => NotificationScreen(),
 ),
   ];
 }

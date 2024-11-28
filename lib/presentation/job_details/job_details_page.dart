@@ -268,7 +268,7 @@ class _JobDetailsPageState extends State<JobDetailsPage> {
               padding: const EdgeInsets.only(right: 14),
               child: IconButton(
                 onPressed: () {
-                  Get.to(() => NotificationScreen(notifications: notifications,));
+                  Get.to(() => NotificationScreen());
                 },
                 icon: Icon(
                   Icons.notifications,
